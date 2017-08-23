@@ -6,19 +6,18 @@
 
 html {
     height: 100%;
-    font-size: 100%;
 }
 
 body {
-    background-image: url(..assets/images/blurred_backgrounds/blur_bg_3.jpg);
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-position: center center;
-    background-size: cover;
-    font-family: 'Open Sans';
-    color: white;
-    min-height: 100%;
-    padding-bottom: 200px;
+       font-family: 'Open Sans';
+       color: white;
+       min-height: 100%;
+       background-image: url(../assets/images/blurred_backgrounds/blur_bg_3.jpg);
+       background-repeat: no-repeat;
+       background-attachment: fixed;
+       background-position: center center;
+       background-size: cover;
+       padding-bottom: 150px;
 }
 
 .navbar {
@@ -92,8 +91,8 @@ body {
  @media (min-width: 1024px) {
    html { font-size: 120%; }
  }
+ 
 .clearfix::before,
-
 .clearfix::after {
    content: " ";
    display: table;
