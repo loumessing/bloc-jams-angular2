@@ -9,25 +9,19 @@ html {
 }
 
 body {
-<<<<<<< HEAD
-=======
        font-family: 'Open Sans';
        color: white;
        min-height: 100%;
->>>>>>> assignment-3
        background-image: url(../assets/images/blurred_backgrounds/blur_bg_3.jpg);
        background-repeat: no-repeat;
        background-attachment: fixed;
        background-position: center center;
        background-size: cover;
-<<<<<<< HEAD
        font-family: 'Open Sans';
        color: white;
        min-height: 100%;
        padding-bottom: 200px;
-=======
        padding-bottom: 150px;
->>>>>>> assignment-3
 }
 
 .navbar {
@@ -101,7 +95,7 @@ body {
  @media (min-width: 1024px) {
    html { font-size: 120%; }
  }
- 
+
 .clearfix::before,
 .clearfix::after {
    content: " ";
