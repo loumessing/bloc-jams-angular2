@@ -14,7 +14,7 @@
        { title: 'Magenta', duration: 374.22, audioUrl: 'assets/music/magenta' }
      ]
 
-  }
+  };
 }
 
 angular
