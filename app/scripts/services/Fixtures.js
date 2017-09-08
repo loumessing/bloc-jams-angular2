@@ -1,7 +1,7 @@
 (function(){
   function Fixtures() {
     var Fixtures = {};
-
+/*private*/
     var albumPicasso = {
         title: 'The Colors',
         artist: 'Pablo Picasso',
@@ -56,12 +56,12 @@
         {title: 'P.S', duration: 56, audioUrl: 'assets/music/bloc_jams_music/PS'}
       ]
 
-
     };
 
     Fixtures.getAlbum = function() {
       return albumPicasso;
     };
+    /*public*/
     Fixtures.getCollection = function(numberOfAlbums){
       var albums  = [];
       for (var i = 0; i < numberOfAlbums; i++){
