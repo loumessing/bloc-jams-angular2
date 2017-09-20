@@ -11,9 +11,7 @@ function SongPlayer($rootScope, Fixtures) {
   /**
   * @desc creates empty SongPlayer
   * @type {Object}
-  */
-
-var SongPlayer = {};
+  */var SongPlayer = {};
 
 /**
 * @desc Current Album info
