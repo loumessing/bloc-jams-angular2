@@ -7,7 +7,7 @@
   * @returns {Object} SongPlayer
   */
 
-function SongPlayer(Fixtures) {
+function SongPlayer($rootScope, Fixtures) {
   /**
   * @desc creates empty SongPlayer
   * @type {Object}
@@ -39,7 +39,8 @@ var currentBuzzObject = null;
 
 var setSong = function(song) {
     if (currentBuzzObject) {
-       stopSong();
+       currentBuzzObject.stop();
+       SongPlayer.currentSong.playing = null;
    }
 
 /**
@@ -50,6 +51,12 @@ var setSong = function(song) {
    currentBuzzObject = new buzz.sound(song.audioUrl, {
        formats: ['mp3'],
        preload: true
+   });
+
+   currentBuzzObject.bind('timeupdate', function() {
+     $rootScope.$apply(function() {
+       SongPlayer.currentTime = currentBuzzObject.getTime();
+     });
    });
 
    SongPlayer.currentSong = song;
@@ -63,7 +70,7 @@ var setSong = function(song) {
 
 var playSong = function(song) {
   currentBuzzObject.play();
-  SongPlayer.currentSong.playing = true;
+  song.playing = true;
 };
 
 /**
@@ -85,7 +92,7 @@ var playSong = function(song) {
 */
 var stopSong = function(song) {
   currentBuzzObject.stop();
-  SongPlayer.currentSong.playing = null;
+  song.playing = null;
 };
 
 /**
@@ -106,6 +113,18 @@ var getSongIndex = function(song) {
 */
 
 SongPlayer.currentSong = null;
+/**
+* @desc Current playback time (seconds) of currently playing song
+* @type {Number}
+*/
+
+SongPlayer.currentTime = null;
+
+/**
+/ * @desc Deafault Volume for songs
+/* @type {Number}
+*/
+SongPlayer.volume = 80;
 
 /**
 * @function SongPlayer.play(song)
@@ -169,7 +188,7 @@ SongPlayer.previous = function() {
       var currentSongIndex = getSongIndex(SongPlayer.currentSong);
       currentSongIndex++;
 
-      if (currentSongIndex >= currentAlbum.songs.length) {
+      if (currentSongIndex > Object.keys(currentAlbum).length) {
         stopSong();
       } else {
         var song = currentAlbum.songs[currentSongIndex];
@@ -178,10 +197,35 @@ SongPlayer.previous = function() {
       }
     };
 
+    /**
+    * @function setCurrentTime
+    * @desc Set current time, in seconds, of currently playing song
+    * @param {Number} time
+    */
+
+    SongPlayer.setCurrentTime = function(time) {
+      if (currentBuzzObject) {
+        currentBuzzObject.setTime(time);
+      }
+    };
+
+    /**
+    * @function setVolume
+    * @desc Set volume of currently playing song
+    * @param {Number} volume
+    */
+
+    SongPlayer.setVolume = function(volume) {
+      if (currentBuzzObject) {
+        currentBuzzObject.setVolume(volume);
+      }
+      SongPlayer.volume = volume;
+    };
+
     return SongPlayer;
   }
 
   angular
     .module('blocJams')
-    .factory('SongPlayer', ['Fixtures', SongPlayer]);
+    .factory('SongPlayer', ['$rootScope', 'Fixtures', SongPlayer]);
 })();
