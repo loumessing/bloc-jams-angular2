@@ -1,5 +1,4 @@
 (function(){
-/**private*/
   /**
   * @function SongPlayer
   * @desc plays/pauses songs
@@ -11,7 +10,8 @@ function SongPlayer($rootScope, Fixtures) {
   /**
   * @desc creates empty SongPlayer
   * @type {Object}
-  */var SongPlayer = {};
+  */
+  var SongPlayer = {};
 
 /**
 * @desc Current Album info
@@ -155,7 +155,6 @@ SongPlayer.pause = function(song) {
       song =  song || SongPlayer.currentSong;
       currentBuzzObject.pause();
       song.playing = false;
-//        pauseSong(song);
     };
 
 
@@ -186,8 +185,10 @@ SongPlayer.previous = function() {
       var currentSongIndex = getSongIndex(SongPlayer.currentSong);
       currentSongIndex++;
 
-      if (currentSongIndex > Object.keys(currentAlbum).length) {
-        stopSong();
+      var lastSongIndex = currentAlbum.songs.length  -1;
+
+      if (currentSongIndex > lastSongIndex) {
+        stopSong(SongPlayer.currentSong);
       } else {
         var song = currentAlbum.songs[currentSongIndex];
         setSong(song);
